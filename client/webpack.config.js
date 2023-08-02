@@ -22,7 +22,24 @@ module.exports = () => {
     ],
 
     module: {
+      // CSS Loaders
       rules: [
+        {
+          test: /\.css$/i,
+          use: ['style-loader', 'css-loader'],
+        },
+        {
+          test: /\.m?js$/,
+          exclude: /node_modules/,
+          // To use ES6 Babel-loader needs to be used
+          use: {
+            loader: 'babel-loader',
+            options: {
+              presents: ['@babel/preset-env'],
+              plugins: ['@babel/plugin-proposal-object-rest-spread', '@babel/transform-runtime'],
+            },
+          },
+        },
         
       ],
     },
