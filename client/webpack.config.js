@@ -2,21 +2,17 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
 const path = require('path');
 const { InjectManifest } = require('workbox-webpack-plugin');
-const { default: editor } = require('./src/js/editor');
-
-// TODO: Add and configure workbox plugins for a service worker and manifest file.
-// TODO: Add CSS loaders and babel to webpack.
 
 module.exports = () => {
   return {
     mode: 'development',
-    // Entry point for project files
+    // Entry point for files
     entry: {
       main: './src/js/index.js',
       install: './src/js/install.js',
-     
+      cards: './src/js/editor.js'
     },
-    // Output for the bundles
+    // Output for our bundles
     output: {
       filename: '[name].bundle.js',
       path: path.resolve(__dirname, 'dist'),
@@ -25,10 +21,10 @@ module.exports = () => {
       // Webpack plugin that generates our html file and injects our bundles. 
       new HtmlWebpackPlugin({
         template: './index.html',
-        title: 'Text Editor'
+        title: 'Text Scribe'
       }),
-
-      // Injects a custom service worker
+     
+      // Injects our custom service worker
       new InjectManifest({
         swSrc: './src-sw.js',
         swDest: 'src-sw.js',
@@ -38,9 +34,8 @@ module.exports = () => {
       new WebpackPwaManifest({
         fingerprints: false,
         inject: true,
-        name: 'Text Editor',
-        short_name: 'Editor',
-        description: 'Super online Text Editor',
+        name: 'TextScribe',
+        description: 'Scribe all the notes you need!!',
         background_color: '#225ca3',
         theme_color: '#225ca3',
         start_url: './',
@@ -56,7 +51,7 @@ module.exports = () => {
     ],
 
     module: {
-      // CSS Loaders
+      // CSS loaders
       rules: [
         {
           test: /\.css$/i,
@@ -65,16 +60,15 @@ module.exports = () => {
         {
           test: /\.m?js$/,
           exclude: /node_modules/,
-          // To use ES6 Babel-loader needs to be used
+          // We use babel-loader in order to use ES6.
           use: {
             loader: 'babel-loader',
             options: {
-              presents: ['@babel/preset-env'],
+              presets: ['@babel/preset-env'],
               plugins: ['@babel/plugin-proposal-object-rest-spread', '@babel/transform-runtime'],
             },
           },
         },
-        
       ],
     },
   };
