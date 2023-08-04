@@ -19,7 +19,7 @@ To run TextScribe, follow these steps:
 1. Clone this repository to your local machine.
 2. Open the terminal and navigate to the project's root directory.
 3. Install dependencies using npm install or yarn install.
-4. Start the development server with npm start or yarn start.
+4. Start the development server with npm start.
 5. Open your browser and visit http://localhost:3000 to access TextScribe.
 
 ## User Story
@@ -59,10 +59,13 @@ THEN I should have proper build scripts for a webpack application
 ```
 
 ## Preview
-View Insomnia Demo on [YouTube](https://www.youtube.com/watch?v=j9gPD4A6YJM)
+View TextScribe hosted on [Heroku](https://textscribe-a44a925d489a.herokuapp.com/)
 
-![alt text](/assets/01-GetAllUserAndThoughts.gif)
+![alt text](/media/HomeScreenshot.png)
+Project Homescreen to allow text to be typed
 
+![alt text](/media/InstallApp.png)
+Option to install the application as a PWA
 
 ## Features
 The TextScrbe API has the following features:
@@ -71,7 +74,6 @@ The TextScrbe API has the following features:
 - Supports markdown syntax for formatting
 
 ## Technologies Used
-- React.js: Frontend user interface
 - IndexedDB: Local data storage
 - idb: IndexedDB wrapper for simplified data handling
 - Service Workers: Enabling PWA capabilities
